@@ -1,8 +1,3 @@
-# PandaPrep-Streamlined-Data-Processing-Pipeline
-# Here’s a **README.md** tailored for your GitHub repository:
-
----
-
 # **PandaPrep: Streamlined Data Processing Pipeline**  
 
 Effortlessly process and analyze raw datasets with PandaPrep, a robust tool designed to streamline data cleaning, transformation, and visualization. This project is your go-to solution for tackling real-world data inconsistencies and optimizing pipeline efficiency.
