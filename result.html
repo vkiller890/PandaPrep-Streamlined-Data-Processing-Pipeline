@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Cleaning Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th, .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+            border-bottom: 1px solid #ddd;
+        }
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+        .chart-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+        .button-group {
+            margin-top: 20px;
+        }
+        .button-group a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #009879;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button-group a:hover {
+            background-color: #007f63;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Cleaning Result</h1>
+
+        <h2>Cleaned Data Preview</h2>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search in table..." onkeyup="filterTable()">
+        </div>
+        <div class="table-container">
+            {{ cleaned_preview|safe }}
+        </div>
+
+        <h2>Summary Statistics</h2>
+        <div class="table-container">
+            {{ stats_preview|safe }}
+        </div>
+
+        <h2>Data Visualization</h2>
+        <div class="chart-container">
+            {{ chart_html|safe }}
+        </div>
+
+        <div class="button-group">
+            <a href="{{ download_link }}">Download Cleaned Data</a>
+            <a href="{{ download_graph_link }}">Download Graph</a>
+            <a href="/">Back to Upload</a>
+        </div>
+    </div>
+    <script>
+        function filterTable() {
+            let input = document.getElementById("search");
+            let filter = input.value.toUpperCase();
+            let table = document.querySelector(".table-container table");
+            let rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let match = false;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toUpperCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+
+        // JavaScript code for table filtering
+    </script>
+</body>
+</html>
+
+
+
+
+
